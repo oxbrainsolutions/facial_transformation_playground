@@ -778,7 +778,13 @@ with col2:
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
-  webrtc_streamer(key="example")
+    
+  def callback(frame):
+      img = frame.to_ndarray(format="bgr24")
+      img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+      return av.VideoFrame.from_ndarray(img, format="bgr24")
+
+  webrtc_streamer(key="example", video_frame_callback=callback, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
 
 
 
