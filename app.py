@@ -3,7 +3,7 @@ import pathlib
 import base64
 
 
-st.set_page_config(page_title="Virtual Assistant Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
+st.set_page_config(page_title="Object Identification Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
 st.elements.utils._shown_default_value_warning=True
 
