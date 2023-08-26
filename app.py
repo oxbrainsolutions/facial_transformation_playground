@@ -506,6 +506,22 @@ st.markdown("""
     .css-f4ro0r {
         align-items: center !important;
     }
+    .css-1b655ro {
+        background-color: #002147 !important;
+        color: #FAFAFA !important;
+        border-color: #FAFAFA !important;
+        border-width: 0.15em !important;
+        width: 50%;
+    }
+    .css-14rfh7s {
+        background-color: #002147 !important;
+        color: #FAFAFA !important;
+        border-color: #FAFAFA !important;
+        border-width: 0.15em !important;
+        width: 50%;
+    }
+
+    
         div.css-1inwz65.ew7r33m0 {
             font-size: 0.8em !important;
             font-family: sans-serif !important;
