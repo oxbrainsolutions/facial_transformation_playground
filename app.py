@@ -773,10 +773,13 @@ with col2:
   '''
   st.markdown(header_media_query + header_text, unsafe_allow_html=True)
   information_text1 = '''
-    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of conversational AI technology using advanced natural language processing algorithms. To begin, simply ask the virtual assistant a question and the AI model will respond accordingly. Please note that this playground is designed to process a maximum of 10 interactions.</span></p>
+    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect, recognize and identify faces within images in real-time. To begin, simply start the camera to allow a facial recognition model to locate your face in the video. Additionally, by training the model on your image, the software will learn to differentiate your face from others and identify you accurately.</span></p>
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
+
+
+
 
 
 
@@ -863,7 +866,7 @@ footer = """
             <b><span style="color: #FAFAFA;">Contents &copy; oxbr</span><span style="color: #FCBC24;">AI</span><span style="color: #FAFAFA;">n 2023</span></b>
         </div>
         <div class="middle-column-footer">
-            <b>DISCLAIMER: The functionalities of the conversational technology provided in the playground are facilitated through advanced AI innovations developed by OpenAI. This playground may exhibit inherent limitations associated with the accuracy of its responses and is intended for educational purposes only.</b>
+            <b>DISCLAIMER: No images or data are being recorded or stored. This playground is intended for educational purposes only.</b>
         </div>
         <div class="clear"></div>
     </div>
