@@ -783,7 +783,7 @@ with col2:
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns([1, 2, 1])
 with col2:    
   webrtc_streamer(key="example", video_frame_callback=callback, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
 
