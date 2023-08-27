@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
+import face_recognition
+import numpy as np
 import pathlib
 import base64
 
@@ -676,8 +678,15 @@ line_media_query2 = '''
 
 def callback(frame):
     img = frame.to_ndarray(format="bgr24")
-    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
-    cv2.rectangle(img, (0, 0), (img.shape[1], img.shape[0]), (90, 33, 71, 0), 30)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = imutils.resize(image, width=600)
+    rects = face_cascade.detectMultiScale(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    for (x, y, w, h) in rects:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (252, 188, 36, 0), 2)
+
+
+#    img = frame.to_ndarray(format="bgr24") 
+#    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 def img_to_bytes(img_path):
@@ -798,7 +807,7 @@ with col2:
 
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:    
-  webrtc_streamer(key="example", video_frame_callback=callback, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
+  webrtc_streamer(key="video", video_frame_callback=callback, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
 
   st.write("hello1")
     
