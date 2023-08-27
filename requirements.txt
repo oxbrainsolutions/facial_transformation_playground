@@ -2,7 +2,7 @@ streamlit
 streamlit-webrtc
 opencv-python-headless
 cmake==3.26.3
-dlib==19.24.1
+dlib-bin
 numpy
 face-recognition==1.3.0
 face-recognition-models==0.3.0
