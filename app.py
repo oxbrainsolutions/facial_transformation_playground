@@ -506,7 +506,7 @@ st.markdown("""
     .css-f4ro0r {
         align-items: center !important;
     }
-    div.MuiButton-contained.css-1b655ro {
+    div.css-1b655ro {
         background-color: #002147 !important;
         color: #FAFAFA !important;
         text-transform: capitalize !important;
