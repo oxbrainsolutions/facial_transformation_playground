@@ -677,6 +677,7 @@ line_media_query2 = '''
 def callback(frame):
     img = frame.to_ndarray(format="bgr24")
     img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
+    cv2.rectangle(img, (0, 0), (img.shape[1], img.shape[0]), (90, 33, 71, 0), 30)
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 def img_to_bytes(img_path):
