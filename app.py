@@ -901,7 +901,7 @@ footer = """
             <b><span style="color: #FAFAFA;">Contents &copy; oxbr</span><span style="color: #FCBC24;">AI</span><span style="color: #FAFAFA;">n 2023</span></b>
         </div>
         <div class="middle-column-footer">
-            <b>DISCLAIMER: No images or data are being recorded or stored. This playground is intended for educational purposes only.</b>
+            <b>DISCLAIMER: No images or data are recorded or stored. This playground is intended for educational purposes only.</b>
         </div>
         <div class="clear"></div>
     </div>
