@@ -6,7 +6,7 @@ import pathlib
 import base64
 
 
-st.set_page_config(page_title="Object Identification Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
+st.set_page_config(page_title="Facial Identification Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
 st.elements.utils._shown_default_value_warning=True
 
@@ -786,7 +786,7 @@ spinner = st.empty()
 col1, col2, col3 = st.columns([1, 4, 1])
 with col2:
   header_text = '''
-    <p class="header_text" style="margin-top: 3.6em; margin-bottom: 0em; text-align: center;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1.8em; ">Image Object Detection & Identification</span></p>
+    <p class="header_text" style="margin-top: 3.6em; margin-bottom: 0em; text-align: center;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1.8em; ">Facial Recognition & Identification</span></p>
   '''
 
   header_media_query = '''
