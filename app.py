@@ -1,10 +1,10 @@
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
-import face_recognition
+import cv2
 import numpy as np
+import mediapipe as mp
 import pathlib
 import base64
-
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
@@ -676,19 +676,6 @@ line_media_query2 = '''
     </style>
 '''
 
-def callback(frame):
-    img = frame.to_ndarray(format="bgr24")
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    img = imutils.resize(image, width=600)
-    rects = face_cascade.detectMultiScale(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-    for (x, y, w, h) in rects:
-        cv2.rectangle(img, (x, y), (x + w, y + h), (252, 188, 36, 0), 2)
-
-
-#    img = frame.to_ndarray(format="bgr24") 
-#    img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
-    return av.VideoFrame.from_ndarray(img, format="bgr24")
-
 def img_to_bytes(img_path):
     img_bytes = pathlib.Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
@@ -800,16 +787,17 @@ with col2:
   '''
   st.markdown(header_media_query + header_text, unsafe_allow_html=True)
   information_text1 = '''
-    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect, recognize and identify faces within images in real-time. To begin, simply start the camera to allow a facial recognition model to locate your face in the video. Additionally, by training the model on your image, the software will learn to differentiate your face from others and identify you accurately.</span></p>
+    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect, recognize and identify faces within images in real-time. To begin, simply start the camera on your device below to allow the model to locate your face in the video. Additionally, by training the model on your image, the software will learn to differentiate your face from others and identify you accurately. Please note that the software may run slowly on some devices.</span></p>
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:    
-  webrtc_streamer(key="video", video_frame_callback=callback, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]})
+mp_facemesh = mp.solutions.face_mesh
+mp_drawing = mp.solutions.drawing_utils
 
-  st.write("hello2")
+col1, col2, col3 = st.columns([2, 4, 2])
+
+
     
 
 
