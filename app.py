@@ -811,6 +811,7 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
+        cv2.putText(image, "Hello", (20, 20 ), cv2.FONT_HERSHEY_SIMPLEX, 1, (250, 0, 0), 2,)
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
                 mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style())
