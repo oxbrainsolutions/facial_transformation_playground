@@ -802,7 +802,7 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     mp_face_mesh = mp.solutions.face_mesh
     mp_drawing = mp.solutions.drawing_utils
     mp_drawing_styles = mp.solutions.drawing_styles
-    drawing_spec = mp_drawing.DrawingSpec(color=(252, 188, 36), thickness=1, circle_radius=5)
+    drawing_spec = mp_drawing.DrawingSpec(color=(36, 188, 252), thickness=1, circle_radius=5) #color in BGR
     image = frame.to_ndarray(format="bgr24")
 
     with mp_face_mesh.FaceMesh(max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
