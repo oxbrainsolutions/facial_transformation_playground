@@ -799,10 +799,10 @@ col1, col2, col3 = st.columns([2, 4, 2])
 
 def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
 
-    mp_facemesh = mp.solutions.face_mesh
+    mp_face_mesh = mp.solutions.face_mesh
     mp_drawing = mp.solutions.drawing_utils
     image = frame.to_ndarray(format="bgr24")
-#    with mp_facemesh.FaceMesh(max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
+#    with mp_face_mesh.FaceMesh(max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
 
 #        results = face_mesh.process(image)
 
