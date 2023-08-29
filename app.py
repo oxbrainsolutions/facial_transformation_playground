@@ -802,7 +802,7 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     mp_face_mesh = mp.solutions.face_mesh
     mp_drawing = mp.solutions.drawing_utils
     mp_drawing_styles = mp.solutions.drawing_styles
-    drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
+    drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=5)
     image = frame.to_ndarray(format="bgr24")
 
     with mp_face_mesh.FaceMesh(max_num_faces=1, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
@@ -816,13 +816,13 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
                 # Draw landmarks on face
-                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks[0], connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style())
+                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style())
 #                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style())
                 # Draw the facial contours of the face onto the image
-                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks[0], connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style())
+                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style())
 #                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style())
                 # Draw the iris location boxes of the face onto the image       
-                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks[0], connections=mp_face_mesh.FACEMESH_IRISES, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_iris_connections_style())
+#                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_IRISES, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_iris_connections_style())
 #                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_IRISES, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_iris_connections_style())
     
         return av.VideoFrame.from_ndarray(image, format="bgr24")
