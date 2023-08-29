@@ -798,10 +798,26 @@ mp_drawing = mp.solutions.drawing_utils
 
 col1, col2, col3 = st.columns([2, 4, 2])
 
+def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
 
+    with mp_facemesh.FaceMesh(
+        max_num_faces=1,
+        refine_landmarks=True,
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5) as face_mesh:
+
+        image = frame.to_ndarray(format="bgr24")
+        results = face_mesh.process(image)
+
+        if results.multi_face_landmarks:
+            for face_landmarks in results.multi_face_landmarks:
+                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style())
+                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style())
+                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_IRISES, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_iris_connections_style())
     
+    return av.VideoFrame.from_ndarray(image, format="bgr24")
 
-
+webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_processor_factory=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
 
 
