@@ -1,8 +1,5 @@
 streamlit
 streamlit-webrtc
 opencv-python-headless
-cmake==3.26.3
-dlib-bin
 numpy
-face_recognition @ git+https://github.com/thetoby9944/face_recognition
-
+mediapipe
