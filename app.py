@@ -823,6 +823,8 @@ with col2:
          #               mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
                         location_data = detection.location_data
                         bb = location_data.relative_bounding_box
+                        cv2.rectangle(image, (int((bb.xmin * width)), int((bb.ymin * height))), (int((bb.xmin * width + bb.width * width)), int((bb.ymin * height + bb.height * height))), (36, 188, 252), 4)
+
                         cv2.rectangle(image, (int((bb.xmin * width) * (1 - delta)), int((bb.ymin * height) * (1 - delta))), (int((bb.xmin * width + bb.width * width) * (1 + delta)), int((bb.ymin * height + bb.height * height) * (1 + delta))), (36, 188, 252), 4)
 
  
