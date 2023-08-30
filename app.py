@@ -817,8 +817,8 @@ with col2:
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
                 if results_detection.detections:
-                    for detection in results_detection.detections:
-                         cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2,)
+                   # for detection in results_detection.detections:
+                   #      cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
                    #     (x, y, w, h) = detection.location_data.relative_bounding_box
                    #     cv2.rectangle(image, (x, y), (x + w, y + h), (252, 188, 36, 0), 4)
 
