@@ -824,8 +824,8 @@ with col2:
                         location_data = detection.location_data
                         bb = location_data.relative_bounding_box
                         cv2.rectangle(image, (int((bb.xmin * width)), int((bb.ymin * height))), (int((bb.xmin * width + bb.width * width)), int((bb.ymin * height + bb.height * height))), (36, 188, 252), 4)
-
-                        cv2.rectangle(image, (int((bb.xmin * width) * (1 - delta)), int((bb.ymin * height) * (1 - delta))), (int((bb.xmin * width + bb.width * width) * (1 + delta)), int((bb.ymin * height + bb.height * height) * (1 + delta))), (36, 188, 252), 4)
+                        delta_abs = min((bb.xmin * delta), (bb.ymin * delta))
+                        cv2.rectangle(image, (int(bb.xmin * width - delta_abs), int(bb.ymin * height - delta_abs)), (int(bb.xmin * width + bb.width * width + delta_abs), int(bb.ymin * height + bb.height * height + delta_abs))) (36, 188, 252), 4)
 
  
         
