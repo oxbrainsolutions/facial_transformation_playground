@@ -817,6 +817,7 @@ with col2:
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
                 if results_detection.detections:
+                    height, width, channels = image.shape
                    # for detection in results_detection.detections:
                    #      cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
                    #     (x, y, w, h) = detection.location_data.relative_bounding_box
@@ -825,11 +826,10 @@ with col2:
                     cv2.putText(image, "Hello", (300, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
                     for detection in results_detection.detections:
                         mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
-                   #     location_data = detection.location_data
-                   #     if location_data.format == LocationData.RELATIVE_BOUNDING_BOX:
-                   #         bb = location_data.relative_bounding_box
-                   #         cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
-                   #         cv2.rectangle(image, (bb.xmin, bb.ymin), (bb.xmin + bb.width, bb.ymin + bb.height), (252, 188, 36, 0), 4)
+                        location_data = detection.location_data
+                        if location_data.format == LocationData.RELATIVE_BOUNDING_BOX:
+                            bb = location_data.relative_bounding_box
+                            cv2.rectangle(image, (bb.xmin * width, bb.ymin * height), (bb.xmin * width + bb.width * width, bb.ymin * height + bb.height * height), (252, 188, 36), 4)
         
                 if results_mesh.multi_face_landmarks:
                     for face_landmarks in results_mesh.multi_face_landmarks:
