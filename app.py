@@ -803,7 +803,7 @@ with col2:
         mp_face_detection = mp.solutions.face_detection
         mp_drawing = mp.solutions.drawing_utils
         mp_drawing_styles = mp.solutions.drawing_styles
-        drawing_spec = mp_drawing.DrawingSpec(thickness=2, circle_radius=2)
+        drawing_spec = mp_drawing.DrawingSpec(thickness=2, circle_radius=2, color=(0, 255, 0))
         image = frame.to_ndarray(format="bgr24")
 
         with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
