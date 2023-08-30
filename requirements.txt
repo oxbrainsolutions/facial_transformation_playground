@@ -5,4 +5,4 @@ numpy
 mediapipe
 cmake
 dlib
-face-recognition
+face_recognition @ git+https://github.com/oxbrainsolutions/face_recognition
