@@ -824,11 +824,11 @@ with col2:
 
                     for detection in results_detection.detections:
                         mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
-                        location_data = detection.location_data
-                        if location_data.format == LocationData.RELATIVE_BOUNDING_BOX:
-                            bb = location_data.relative_bounding_box
-                            cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
-                            cv2.rectangle(image, (bb.xmin, bb.ymin), (bb.xmin + bb.width, bb.ymin + bb.height), (252, 188, 36, 0), 4)
+                   #     location_data = detection.location_data
+                   #     if location_data.format == LocationData.RELATIVE_BOUNDING_BOX:
+                   #         bb = location_data.relative_bounding_box
+                   #         cv2.putText(image, "Hello", (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+                   #         cv2.rectangle(image, (bb.xmin, bb.ymin), (bb.xmin + bb.width, bb.ymin + bb.height), (252, 188, 36, 0), 4)
         
                 if results_mesh.multi_face_landmarks:
                     for face_landmarks in results_mesh.multi_face_landmarks:
