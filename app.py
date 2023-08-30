@@ -822,6 +822,7 @@ with col2:
                    #     (x, y, w, h) = detection.location_data.relative_bounding_box
                    #     cv2.rectangle(image, (x, y), (x + w, y + h), (252, 188, 36, 0), 4)
 
+                    cv2.putText(image, "Hello", (300, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
                     for detection in results_detection.detections:
                         mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
                    #     location_data = detection.location_data
