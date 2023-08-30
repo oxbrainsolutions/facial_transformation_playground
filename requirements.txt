@@ -3,3 +3,6 @@ streamlit-webrtc
 opencv-python-headless
 numpy
 mediapipe
+cmake
+dlib
+face-recognition
