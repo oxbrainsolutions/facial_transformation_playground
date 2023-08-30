@@ -822,7 +822,7 @@ with col2:
       #                  cv2.rectangle(image, (x, y), (x + w, y + h), (252, 188, 36, 0), 4)
 
                     for detection in results_detection.detections:
-                        mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
+                        mp_drawing.draw_detection(image=image, detection=detection[0], keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
         
                 if results_mesh.multi_face_landmarks:
                     for face_landmarks in results_mesh.multi_face_landmarks:
