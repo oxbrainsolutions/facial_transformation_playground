@@ -816,15 +816,15 @@ with col2:
                 image.flags.writeable = True
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-                delta_x = 0.1
-                delta_y = 0.2
+                delta_x = 0.05
+                delta_y = 0.25
                 if results_detection.detections:
                     height, width, channels = image.shape
                     for detection in results_detection.detections:
          #               mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
                         location_data = detection.location_data
                         bb = location_data.relative_bounding_box
-                        cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+         #               cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
                         abs_delta_x = float(bb.width * width * delta_x)
                         abs_delta_y = float(bb.height * height * delta_y)
                         cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
