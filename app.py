@@ -816,7 +816,7 @@ with col2:
                 image.flags.writeable = True
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
-                delta = 0.2
+                delta = 0.1
                 if results_detection.detections:
                     height, width, channels = image.shape
                     for detection in results_detection.detections:
