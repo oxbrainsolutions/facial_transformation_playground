@@ -818,7 +818,7 @@ with col2:
 
                 if results_detection.detections:
                     for detection in results_detection.detections:
-                         cv2.putText(image, detection.location_data.relative_keypoints[2], (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2,)
+                         cv2.putText(image, detection.location_data.relative_keypoints[2].x, (0.5, 0.5), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2,)
                    #     (x, y, w, h) = detection.location_data.relative_bounding_box
                    #     cv2.rectangle(image, (x, y), (x + w, y + h), (252, 188, 36, 0), 4)
 
