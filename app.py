@@ -15,7 +15,7 @@ marker_spinner_css = """
 <style>
     #spinner-container-marker {
         display: flex;
-        align-items: center;
+        align-items: center;lta
         justify-content: center;
         position: fixed;
         top: 0%;
@@ -825,7 +825,7 @@ with col2:
                         bb = location_data.relative_bounding_box
                         cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
                       #  delta_abs = min(float(bb.xmin * width * delta), float(bb.ymin * height * delta))
-                        delta_abs = int(bb.xmin * width) * delta
+                        delta_abs = 50
                         cv2.rectangle(image, (int(bb.xmin * width - delta_abs), int(bb.ymin * height - delta_abs)), (int(bb.xmin * width + bb.width * width + delta_abs), int(bb.ymin * height + bb.height * height + delta_abs)) (36, 188, 252), 4)
 
  
