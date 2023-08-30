@@ -826,7 +826,7 @@ with col2:
                         cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
                         delta_x = float(bb.width * width * delta)
                         delta_y = float(bb.height * height * delta)
-                        cv2.rectangle(image, (int(bb.xmin * width - delta_x), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width + delta_x), int(bb.ymin * height + bb.height * height + delta_y)), (36, 188, 252), 4)
+                        cv2.rectangle(image, (int(bb.xmin * width - delta_x), int(bb.ymin * height - delta_y)), (int(bb.xmin * width + bb.width * width + delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
 
  
         
