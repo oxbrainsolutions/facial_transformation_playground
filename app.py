@@ -813,7 +813,7 @@ with col2:
         drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
         image = frame.to_ndarray(format="bgr24")
 
-        if st.session_state.show_mesh:
+        if st.session_state.show_mesh == True:
             with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
                 with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
                     image.flags.writeable = False
@@ -836,8 +836,6 @@ with col2:
                             abs_delta_x = float(bb.width * width * delta_x)
                             abs_delta_y = float(bb.height * height * delta_y)
                             cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
-    
-     
             
                     if results_mesh.multi_face_landmarks:
                         for face_landmarks in results_mesh.multi_face_landmarks:
