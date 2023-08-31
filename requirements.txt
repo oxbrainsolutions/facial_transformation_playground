@@ -4,4 +4,3 @@ opencv-python-headless
 numpy
 mediapipe
 face_recognition
-dlib-binary
