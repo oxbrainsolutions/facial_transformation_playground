@@ -798,6 +798,9 @@ with col2:
 
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
+
+    st_toggle_switch(label="Enable Face Mesh?", key="toggle_switch", default_value=False, label_after="Enabled", inactive_color="#D3D3D3", active_color="#11567f", track_color="#29B5E8")
+    
     def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     
         mp_face_mesh = mp.solutions.face_mesh
