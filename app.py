@@ -807,7 +807,7 @@ with col2:
         drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
         image = frame.to_ndarray(format="bgr24")
 
-        facial_analysis = DeepFace.stream(image)
+        facial_analysis = DeepFace.analyze(img_path=image)
        
         with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
             with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
