@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
+from streamlit_toggle import st_toggle_switch
 import numpy as np
 import pathlib
 import base64
