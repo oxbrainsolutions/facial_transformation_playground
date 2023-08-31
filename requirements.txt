@@ -1,7 +1,7 @@
 streamlit
 streamlit-webrtc
 opencv-python-headless
-dlib-bin
+dlib-binary
 numpy
 mediapipe
 face_recognition
