@@ -4,4 +4,4 @@ opencv-python-headless
 numpy
 mediapipe
 face_recognition @ git+https://github.com/oxbrainsolutions/face_recognition
-face_recognition @ git+https://github.com/oxbrainsolutions/Dlib
+dlib @ git+https://github.com/oxbrainsolutions/Dlib
