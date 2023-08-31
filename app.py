@@ -799,7 +799,7 @@ with col2:
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
-    st_toggle_switch(label="Show Face Mesh", key="toggle_switch", default_value=False, label_after=False, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#29B5E8")
+    st_toggle_switch(label="Show Face Mesh", key="toggle_switch", default_value=False, label_after=False, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#03A9F2")
     
     def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     
