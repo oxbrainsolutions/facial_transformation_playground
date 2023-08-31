@@ -789,7 +789,7 @@ with col2:
   '''
   st.markdown(header_media_query + header_text, unsafe_allow_html=True)
   information_text1 = '''
-    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect, recognize and identify faces within images in real-time. To begin, simply start the camera on your device below to allow the model to locate your face in the video. Additionally, by training the model on your image, the software will learn to differentiate your face from others and identify you accurately. Please note that the software may run slowly on some devices.</span></p>
+    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect and recognize faces within images in real-time. To begin, simply start the camera on your device below to allow the model to locate your face in the video. Please note that the software may run slowly on some devices.</span></p>
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
