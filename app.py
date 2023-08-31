@@ -802,7 +802,12 @@ with col2:
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
-    st_toggle_switch(label="Show Face Mesh", key="toggle_switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
+    toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
+    if toggle_switch:
+        st.session_state.show_mesh = True
+    else:
+        st.session_state.show_mesh = False
+
     
     if st.session_state.show_mesh:
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
