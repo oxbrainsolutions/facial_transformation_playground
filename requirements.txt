@@ -3,5 +3,5 @@ streamlit-webrtc
 opencv-python-headless
 numpy
 mediapipe
-dlib-bin
+cmake
 face_recognition==1.3.0
