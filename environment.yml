@@ -1,4 +1,3 @@
-name: facial_recognition_playground
 channels:
   - conda-forge
   - defaults
