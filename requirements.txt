@@ -3,4 +3,5 @@ streamlit-webrtc
 opencv-python-headless
 numpy
 mediapipe
+dlib-bin
 face_recognition==1.3.0
