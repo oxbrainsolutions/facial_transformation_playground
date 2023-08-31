@@ -879,7 +879,8 @@ with col2:
                         abs_delta_x = float(bb.width * width * delta_x)
                         abs_delta_y = float(bb.height * height * delta_y)
                         cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
-                  return av.VideoFrame.from_ndarray(image, format="bgr24")
+                    
+                    return av.VideoFrame.from_ndarray(image, format="bgr24")
     
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
