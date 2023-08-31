@@ -7,6 +7,11 @@ import cv2
 import av
 import mediapipe as mp
 
+from Detector import FaceDetector
+from MaskGenerator import MaskGenerator
+detector = FaceDetector()
+maskGenerator = MaskGenerator()
+target_image, target_alpha = detector.load_target_img("images/obama.png")
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
