@@ -6,7 +6,7 @@ import base64
 import cv2
 import av
 import mediapipe as mp
-from Deepface import DeepFace
+from deepface import DeepFace
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
