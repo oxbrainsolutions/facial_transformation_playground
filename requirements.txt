@@ -1,8 +1,7 @@
 streamlit
 streamlit-webrtc
-dlib-bin
+dlib-binary
 opencv-python-headless
 numpy
 mediapipe
-cmake
-face_recognition @ git+https://github.com/oxbrainsolutions/face_recognition
+face_recognition
