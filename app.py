@@ -6,7 +6,6 @@ import base64
 import cv2
 import av
 import mediapipe as mp
-from deepface import DeepFace
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
@@ -806,9 +805,7 @@ with col2:
         mp_drawing_styles = mp.solutions.drawing_styles
         drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
         image = frame.to_ndarray(format="bgr24")
-
-        facial_analysis = DeepFace.analyze(img_path=image)
-       
+     
         with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
             with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
                 image.flags.writeable = False
