@@ -13,7 +13,7 @@ st.set_page_config(page_title="Facial Recognition Playground", page_icon="images
 st.elements.utils._shown_default_value_warning=True
 
 if "show_mesh" not in st.session_state:
-    st.session_state.show_mesh = True
+    st.session_state.show_mesh = False
 
 marker_spinner_css = """
 <style>
