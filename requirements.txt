@@ -3,3 +3,4 @@ streamlit-webrtc
 opencv-python-headless
 numpy
 mediapipe
+deepface~=0.0.67
