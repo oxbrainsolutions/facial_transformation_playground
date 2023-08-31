@@ -816,10 +816,12 @@ with col2:
         drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
         image = frame.to_ndarray(format="bgr24")
 
-        landmarks, image2, face_landmarks = detector.find_face_landmarks(image)
-        detector.stabilizeVideoStream(frame, landmarks)
-        output = maskGenerator.applyTargetMask(image, landmarks)
-        image = detector.drawLandmarks(image2, face_landmarks)
+        landmarks, image_update, face_landmarks = detector.find_face_landmarks(image)
+        detector.stabilizeVideoStream(image, landmarks)
+        output = maskGenerator.applyTargetMaskToTarget(landmarks)
+        image_out = detector.drawLandmarks(image_update, face_landmarks)
+        image = np.copy(output)
+        img_actual = np.copy(image_out)
         
         with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
             with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
