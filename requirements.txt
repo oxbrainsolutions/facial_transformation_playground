@@ -3,4 +3,3 @@ streamlit-webrtc
 opencv-python-headless
 numpy
 mediapipe
-face_recognition @ git+https://github.com/oxbrainsolutions/face_recognition
