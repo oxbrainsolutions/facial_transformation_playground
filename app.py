@@ -825,6 +825,7 @@ with col2:
     facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
     st.button("Reset", key="reset1", on_click=reset)
+    st.write("hello")
 with col4:
     if st.session_state.user_face_select == "Brad Pitt":
         target_image, target_alpha = detector.load_target_img("images/brad_pitt.png")
