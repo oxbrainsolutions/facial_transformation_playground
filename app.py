@@ -827,9 +827,10 @@ with col2:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             landmarks, image, face_landmarks = detector.find_face_landmarks(image)
             image.flags.writeable = True
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            image_out = detector.drawLandmarks(image, face_landmarks)
             
-            return av.VideoFrame.from_ndarray(image, format="bgr24")
+            return av.VideoFrame.from_ndarray(image_out, format="bgr24")
     
     webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
