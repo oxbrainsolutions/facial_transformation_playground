@@ -28,7 +28,7 @@ if "show_boundary" not in st.session_state:
 def reset():
     st.session_state.show_mesh = False
     st.session_state.show_boundary = False
-    facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
 
@@ -821,7 +821,7 @@ with col2:
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
-    facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
     st.button("Reset", key="reset1", on_click=reset)
     st.write("hello")
