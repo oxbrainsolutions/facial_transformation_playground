@@ -856,7 +856,7 @@ else:
 
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
-    if st.session_state.show_boundary == False & st.session_state.show_mesh == False & st.session_state.user_face_select == "":
+    if st.session_state.show_boundary == False and st.session_state.show_mesh == False and st.session_state.user_face_select == "":
 
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:          
             image = frame.to_ndarray(format="bgr24")
@@ -866,7 +866,7 @@ with col2:
 
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
-    if st.session_state.show_boundary == True & st.session_state.show_mesh == False & st.session_state.user_face_select == "":
+    if st.session_state.show_boundary == True and st.session_state.show_mesh == False and st.session_state.user_face_select == "":
         
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             mp_face_detection = mp.solutions.face_detection
@@ -900,7 +900,7 @@ with col2:
     
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
   
-    if st.session_state.show_boundary == False & st.session_state.show_mesh == True & st.session_state.user_face_select == "":           
+    if st.session_state.show_boundary == False and st.session_state.show_mesh == True and st.session_state.user_face_select == "":           
 
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:        
             mp_face_mesh = mp.solutions.face_mesh
@@ -930,7 +930,7 @@ with col2:
             
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
-    if st.session_state.show_boundary == False & st.session_state.show_mesh == False & st.session_state.user_face_select != "": 
+    if st.session_state.show_boundary == False and st.session_state.show_mesh == False and st.session_state.user_face_select != "": 
         
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             image = frame.to_ndarray(format="bgr24")
@@ -948,7 +948,7 @@ with col2:
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
 
-    if st.session_state.show_boundary == True & st.session_state.show_mesh == True & st.session_state.user_face_select == "":
+    if st.session_state.show_boundary == True and st.session_state.show_mesh == True and st.session_state.user_face_select == "":
        
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:       
             mp_face_mesh = mp.solutions.face_mesh
