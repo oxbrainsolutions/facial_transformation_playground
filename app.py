@@ -814,8 +814,6 @@ with col2:
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
-
-with col4:
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
     facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
