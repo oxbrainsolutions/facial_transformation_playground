@@ -1,4 +1,4 @@
-streamlit as st
+import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 from streamlit_toggle import st_toggle_switch
 import numpy as np
