@@ -818,6 +818,10 @@ with col2:
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
+    text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.8em; ">Number of Images</span></p>'
+    st.markdown(text_media_query1 + text, unsafe_allow_html=True)
+    facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
+    st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select", on_change=change_callback)
     if boundary_toggle_switch:
         st.session_state.show_boundary = True
     else:
