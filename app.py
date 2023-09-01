@@ -26,8 +26,6 @@ if "show_boundary" not in st.session_state:
     st.session_state.show_boundary = False
 
 def reset():
-    st.session_state.show_mesh = False
-    st.session_state.show_boundary = False
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
