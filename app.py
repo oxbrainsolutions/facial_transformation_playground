@@ -10,10 +10,10 @@ import mediapipe as mp
 
 from deepface import DeepFace
 from Detector import FaceDetector
-from MaskGenerator import MaskGenerator
+#from MaskGenerator import MaskGenerator
 
 detector = FaceDetector()
-maskGenerator = MaskGenerator()
+#maskGenerator = MaskGenerator()
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
