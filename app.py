@@ -1,4 +1,4 @@
-import streamlit as st
+ streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 from streamlit_toggle import st_toggle_switch
 import numpy as np
@@ -807,7 +807,7 @@ with col2:
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
-col1, col2, col3, col4, col5, col6 = st.columns([2, 1, 1, 1, 0.5, 2.5])
+col1, col2, col3, col4, col5 = st.columns([2, 1, 0.2, 0.5, 2.3])
 with col2:
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
@@ -816,7 +816,7 @@ with col2:
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
     facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
-with col5:
+with col4:
     target_image, target_alpha = detector.load_target_img("images/elvis.png")
     target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
     target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
