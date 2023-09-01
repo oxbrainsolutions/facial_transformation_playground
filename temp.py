@@ -21,7 +21,7 @@ marker_spinner_css = """
 <style>
     #spinner-container-marker {
         display: flex;
-        align-items: center;lta
+        align-items: center;
         justify-content: center;
         position: fixed;
         top: 0%;
