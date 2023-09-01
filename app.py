@@ -805,7 +805,9 @@ with col2:
 
 st.write("hello3")
 target_image, target_alpha = detector.load_target_img("images/putin.png")
-st.write(target_image)
+target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+st.image(target_image_out)
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
