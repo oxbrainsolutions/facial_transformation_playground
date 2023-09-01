@@ -992,6 +992,44 @@ with col2:
     
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
+    if st.session_state.show_boundary == True and st.session_state.show_mesh == False and st.session_state.user_face_select != "":
+
+        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+            mp_face_detection = mp.solutions.face_detection
+            mp_drawing = mp.solutions.drawing_utils
+            mp_drawing_styles = mp.solutions.drawing_styles
+            drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
+            image = frame.to_ndarray(format="bgr24")
+                      
+            with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
+                image.flags.writeable = False
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                landmarks, image, face_landmarks = detector.find_face_landmarks(image)
+                results_detection = face_detection.process(image)
+        
+                image.flags.writeable = True
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+                delta_x = 0.05
+                delta_y = 0.25
+                if results_detection.detections:
+                    height, width, channels = image.shape
+                    for detection in results_detection.detections:
+         #               mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
+                        location_data = detection.location_data
+                        bb = location_data.relative_bounding_box
+         #               cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+                        abs_delta_x = float(bb.width * width * delta_x)
+                        abs_delta_y = float(bb.height * height * delta_y)
+                        cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+
+                detector.stabilizeVideoStream(image, landmarks)
+                image_out = detector.drawLandmarks(image, face_landmarks)
+                output = maskGenerator.applyTargetMask(image, landmarks)
+                
+                return av.VideoFrame.from_ndarray(output, format="bgr24")
+        
+        webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
 
     
