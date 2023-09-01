@@ -947,8 +947,8 @@ with col2:
 
 
     if st.session_state.show_boundary == True and st.session_state.show_mesh == True and st.session_state.user_face_select == "":
-       
-        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:       
+
+        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:            
             mp_face_mesh = mp.solutions.face_mesh
             mp_face_detection = mp.solutions.face_detection
             mp_drawing = mp.solutions.drawing_utils
