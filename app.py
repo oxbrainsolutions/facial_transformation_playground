@@ -807,15 +807,12 @@ with col2:
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
-target_image, target_alpha = detector.load_target_img("images/elvis.png")
-target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
-target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
-maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
-st.image(target_image_out)
 col1, col2, col3, col4, col5, col6 = st.columns([2, 1, 1, 1, 1, 2])
 with col2:
+    st.write("")
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
 with col3:
+    st.write("")
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
 with col4:
