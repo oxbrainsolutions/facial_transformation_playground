@@ -854,6 +854,8 @@ else:
     else:
         st.session_state.show_mesh = False
 
+col1, col2, col3 = st.columns([2, 4, 2])
+with col2:
     def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             image = frame.to_ndarray(format="bgr24")
             image.flags.writeable = False
