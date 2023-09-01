@@ -22,6 +22,9 @@ st.elements.utils._shown_default_value_warning=True
 if "show_mesh" not in st.session_state:
     st.session_state.show_mesh = False
 
+if "show_boundary" not in st.session_state:
+    st.session_state.show_boundary = False
+
 marker_spinner_css = """
 <style>
     #spinner-container-marker {
@@ -813,8 +816,14 @@ col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
-    toggle_switch = st.toggle(label="Show Face Mesh", key="switch", value=False)
-    if toggle_switch:
+    boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
+    mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
+    if boundary_toggle_switch:
+        st.session_state.show_boundary = True
+    else:
+        st.session_state.show_boundary = False
+    
+    if mesh_toggle_switch:
         st.session_state.show_mesh = True
     else:
         st.session_state.show_mesh = False
