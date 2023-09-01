@@ -825,16 +825,9 @@ with col2:
             image = frame.to_ndarray(format="bgr24")
             image.flags.writeable = False
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            detected_faces = DeepFace.detectFace(image, detector_backend='opencv')
+            landmarks, image, face_landmarks = detector.find_face_landmarks(image)
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
-            
-            face_to_swap = DeepFace.detectFace("images/putin.png", detector_backend='opencv')
-            st.write(face_to_swap)
-            for face in detected_faces:
-                swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
-                image = DeepFace.blending(image, swapped_face)
-
             
             return av.VideoFrame.from_ndarray(image, format="bgr24")
     
