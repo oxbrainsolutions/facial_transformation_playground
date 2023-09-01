@@ -829,8 +829,8 @@ with col2:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             detector.stabilizeVideoStream(image, landmarks)
             image_out = detector.drawLandmarks(image, face_landmarks)
-            output = maskGenerator.applyTargetMask(image, landmarks)
-    #        output = maskGenerator.applyTargetMaskToTarget(landmarks)
+    #        output = maskGenerator.applyTargetMask(image, landmarks)
+            output = maskGenerator.applyTargetMaskToTarget(landmarks)
             return av.VideoFrame.from_ndarray(output, format="bgr24")
     
     webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
