@@ -8,6 +8,8 @@ import cv2
 import av
 import mediapipe as mp
 
+from deepface import DeepFace
+
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
 st.elements.utils._shown_default_value_warning=True
@@ -809,17 +811,39 @@ with col2:
     else:
         st.session_state.show_mesh = False
 
+    def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+            image = frame.to_ndarray(format="bgr24")
+            detected_faces = DeepFace.detectFace(image, detector_backend='opencv')
+            face_to_swap = DeepFace.detectFace(images/putin.png, detector_backend='opencv')
+            for face in detected_faces:
+                swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
+                image = DeepFace.blending(image, swapped_face)
+
+            
+            return av.VideoFrame.from_ndarray(image, format="bgr24")
+    
+    webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
+
+
+
     
     if st.session_state.show_mesh:
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
-        
+                        
             mp_face_mesh = mp.solutions.face_mesh
             mp_face_detection = mp.solutions.face_detection
             mp_drawing = mp.solutions.drawing_utils
             mp_drawing_styles = mp.solutions.drawing_styles
             drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
             image = frame.to_ndarray(format="bgr24")
-    
+
+            detected_faces = DeepFace.detectFace(image, detector_backend='opencv')
+            face_to_swap = DeepFace.detectFace(images/putin.png, detector_backend='opencv')
+            for face in detected_faces:
+                swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
+                image = DeepFace.blending(image, swapped_face)
+
+            
             with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
                 with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
                     image.flags.writeable = False
