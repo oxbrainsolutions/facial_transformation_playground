@@ -856,6 +856,102 @@ else:
 
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
+    if st.session_state.show_boundary == False & st.session_state.show_mesh == False & st.session_state.user_face_select == "":
+
+        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:          
+            image = frame.to_ndarray(format="bgr24")
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            return av.VideoFrame.from_ndarray(image, format="bgr24")
+
+        webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
+
+    if st.session_state.show_boundary == True & st.session_state.show_mesh == False & st.session_state.user_face_select == "":
+        
+        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+            mp_face_detection = mp.solutions.face_detection
+            mp_drawing = mp.solutions.drawing_utils
+            mp_drawing_styles = mp.solutions.drawing_styles
+            drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
+            image = frame.to_ndarray(format="bgr24")
+            
+            with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
+                image.flags.writeable = False
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                results_detection = face_detection.process(image)
+        
+                image.flags.writeable = True
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+                delta_x = 0.05
+                delta_y = 0.25
+                if results_detection.detections:
+                    height, width, channels = image.shape
+                    for detection in results_detection.detections:
+         #               mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
+                        location_data = detection.location_data
+                        bb = location_data.relative_bounding_box
+         #               cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+                        abs_delta_x = float(bb.width * width * delta_x)
+                        abs_delta_y = float(bb.height * height * delta_y)
+                        cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+                
+                return av.VideoFrame.from_ndarray(image, format="bgr24")
+    
+        webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
+  
+    if st.session_state.show_boundary == True & st.session_state.show_mesh == False & st.session_state.user_face_select == "":           
+
+
+        
+        def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+                        
+            mp_face_mesh = mp.solutions.face_mesh
+            mp_face_detection = mp.solutions.face_detection
+            mp_drawing = mp.solutions.drawing_utils
+            mp_drawing_styles = mp.solutions.drawing_styles
+            drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
+            image = frame.to_ndarray(format="bgr24")
+            
+            with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
+                with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
+                    image.flags.writeable = False
+                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                    results_detection = face_detection.process(image)
+                    results_mesh = face_mesh.process(image)
+            
+                    image.flags.writeable = True
+                    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    
+                    delta_x = 0.05
+                    delta_y = 0.25
+                    if results_detection.detections:
+                        height, width, channels = image.shape
+                        for detection in results_detection.detections:
+             #               mp_drawing.draw_detection(image=image, detection=detection, keypoint_drawing_spec=mp_drawing.DrawingSpec(color=(255, 0, 0), thickness=2, circle_radius=2))
+                            location_data = detection.location_data
+                            bb = location_data.relative_bounding_box
+             #               cv2.rectangle(image, (int(bb.xmin * width), int(bb.ymin * height)), (int(bb.xmin * width + bb.width * width), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+                            abs_delta_x = float(bb.width * width * delta_x)
+                            abs_delta_y = float(bb.height * height * delta_y)
+                            cv2.rectangle(image, (int(bb.xmin * width - abs_delta_x), int(bb.ymin * height - abs_delta_y)), (int(bb.xmin * width + bb.width * width + abs_delta_x), int(bb.ymin * height + bb.height * height)), (36, 188, 252), 4)
+            
+                    if results_mesh.multi_face_landmarks:
+                        for face_landmarks in results_mesh.multi_face_landmarks:
+                            # Draw landmarks on face
+                            mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=drawing_spec)
+                            # Draw the facial contours of the face onto the image
+            #                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style())
+                            # Draw the iris location boxes of the face onto the image       
+            #                mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_IRISES, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_iris_connections_style())
+    
+                    return av.VideoFrame.from_ndarray(image, format="bgr24")
+    
+        webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
+
+
+
+    
     def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             image = frame.to_ndarray(format="bgr24")
             image.flags.writeable = False
