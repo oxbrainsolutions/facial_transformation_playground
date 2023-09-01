@@ -800,7 +800,9 @@ with col2:
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
 
-st.write("hello1")
+st.write("hello2")
+face_to_swap = DeepFace.detectFace("images/putin.png", detector_backend='opencv')
+st.write(face_to_swap)
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
