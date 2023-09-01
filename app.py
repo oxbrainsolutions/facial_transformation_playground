@@ -15,7 +15,7 @@ from MaskGenerator import MaskGenerator
 detector = FaceDetector()
 maskGenerator = MaskGenerator()
 
-st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
+st.set_page_config(page_title="Facial Transformation Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
 st.elements.utils._shown_default_value_warning=True
 
@@ -799,12 +799,11 @@ with col2:
   '''
   st.markdown(header_media_query + header_text, unsafe_allow_html=True)
   information_text1 = '''
-    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect and recognize faces within images in real-time. To begin, simply start the camera on your device below to allow the model to locate your face in the video. Please note that the software may run slowly on some devices.</span></p>
+    <p class="information_text" style="margin-top: 2em; margin-bottom: 2em; text-align: justify;"><span style="color: #FAFAFA; font-family: sans-serif; font-size: 1em; ">In this interactive playground, you can explore the capabilities of AI and ML models to detect, recognize and transform faces within images in real-time. To begin, simply start the camera on your device below to allow the model to locate your face in the video. Select filters from the menu including the option to tranform your face into a famous individual. Please note that the software may run slowly on some devices.</span></p>
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
-st.write("Elvis")
 target_image, target_alpha = detector.load_target_img("images/elvis.png")
 target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
 target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
