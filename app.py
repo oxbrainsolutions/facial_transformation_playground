@@ -827,7 +827,7 @@ with col5:
     target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
     target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
     maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
-    st.image(target_image_out)
+    st.image(target_image_out, use_column_width="always")
     
 if boundary_toggle_switch:
     st.session_state.show_boundary = True
