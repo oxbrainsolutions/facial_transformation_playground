@@ -813,7 +813,12 @@ with col2:
 
     def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             image = frame.to_ndarray(format="bgr24")
+            image.flags.writeable = False
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             detected_faces = DeepFace.detectFace(image, detector_backend='opencv')
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
+            
             face_to_swap = DeepFace.detectFace("images/putin.png", detector_backend='opencv')
             for face in detected_faces:
                 swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
