@@ -9,6 +9,11 @@ import av
 import mediapipe as mp
 
 from deepface import DeepFace
+from Detector import FaceDetector
+from MaskGenerator import MaskGenerator
+
+detector = FaceDetector()
+maskGenerator = MaskGenerator()
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
@@ -800,9 +805,9 @@ with col2:
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
 
-st.write("hello2")
-face_to_swap = DeepFace.detectFace("images/putin.png", detector_backend='opencv')
-st.write(face_to_swap)
+st.write("hello3")
+target_image, target_alpha = detector.load_target_img("images/putin.png")
+st.write(target_image)
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
