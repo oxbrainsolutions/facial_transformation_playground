@@ -800,7 +800,7 @@ with col2:
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
 
 
-st.write("hello")
+st.write("hello1")
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
 
@@ -820,6 +820,7 @@ with col2:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)      
             
             face_to_swap = DeepFace.detectFace("images/putin.png", detector_backend='opencv')
+            st.write(face_to_swap)
             for face in detected_faces:
                 swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
                 image = DeepFace.blending(image, swapped_face)
