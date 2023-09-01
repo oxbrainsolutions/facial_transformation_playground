@@ -820,13 +820,6 @@ with col2:
             mp_drawing_styles = mp.solutions.drawing_styles
             drawing_spec = mp_drawing.DrawingSpec(color=(244, 169, 3), thickness=1, circle_radius=1)
             image = frame.to_ndarray(format="bgr24")
-
-            detected_faces = DeepFace.detectFace(image, detector_backend='opencv')
-            face_to_swap = DeepFace.detectFace(images/putin.png, detector_backend='opencv')
-            for face in detected_faces:
-                swapped_face = DeepFace.swap(face, face_to_swap, detector_backend='dlib')
-                image = DeepFace.blending(image, swapped_face)
-
             
             with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
                 with mp_face_mesh.FaceMesh(max_num_faces=5, refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5) as face_mesh:
