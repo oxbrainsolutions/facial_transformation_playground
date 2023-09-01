@@ -817,11 +817,24 @@ with col2:
     facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
 with col4:
-    target_image, target_alpha = detector.load_target_img("images/elvis.png")
-    target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
-    target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
-    maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
-    st.image(target_image_out, use_column_width="always")
+    if user_face_select == "Brad Pitt":
+        target_image, target_alpha = detector.load_target_img("images/brad_pitt.png")
+        target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+        target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+        st.image(target_image_out, use_column_width="always")
+    if user_face_select == "Elvis Presley":
+        target_image, target_alpha = detector.load_target_img("images/elvis.png")
+        target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+        target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+        st.image(target_image_out, use_column_width="always")
+    if user_face_select == "Tom Cruise":
+        target_image, target_alpha = detector.load_target_img("images/tom_cruise.png")
+        target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+        target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+        st.image(target_image_out, use_column_width="always")
     
 if boundary_toggle_switch:
     st.session_state.show_boundary = True
