@@ -809,8 +809,6 @@ with col2:
 
 col1, col2, col3, col4, col5, col6 = st.columns([2, 1, 1, 1, 0.5, 2.5])
 with col2:
-    st.write("")
-    st.write("")
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
