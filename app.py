@@ -30,7 +30,6 @@ def reset():
     st.session_state.show_boundary = False
     facial_options = ["","Brad Pitt", "Elvis Presley", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
-    st.experimental_rerun()
 
 
 marker_spinner_css = """
