@@ -10,8 +10,10 @@ import mediapipe as mp
 
 from deepface import DeepFace
 from Detector import FaceDetector
+from MaskGenerator import MaskGenerator
 
 detector = FaceDetector()
+maskGenerator = MaskGenerator()
 
 st.set_page_config(page_title="Facial Recognition Playground", page_icon="images/oxbrain_favicon.png", layout="wide")
 
@@ -807,6 +809,7 @@ st.write("hello3")
 target_image, target_alpha = detector.load_target_img("images/putin.png")
 target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
 target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
 st.image(target_image_out)
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
