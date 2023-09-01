@@ -4,3 +4,4 @@ streamlit-toggle-switch
 opencv-python-headless
 numpy
 mediapipe
+deepface
