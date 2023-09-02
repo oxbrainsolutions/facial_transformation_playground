@@ -29,9 +29,9 @@ def change_callback():
     st.session_state.show_mesh = False
     st.session_state.show_boundary = False
     boundary_toggle_switch_field.empty()
-    boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch3", value=False)
+  #  boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch3", value=False)
     mesh_toggle_switch_field.empty()
-    mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch4", value=False)
+  #  mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch4", value=False)
 
 def reset():
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
