@@ -25,6 +25,14 @@ if "show_mesh" not in st.session_state:
 if "show_boundary" not in st.session_state:
     st.session_state.show_boundary = False
 
+def change_callback():
+    st.session_state.show_mesh = False
+    st.session_state.show_boundary = False
+    boundary_toggle_switch_field.empty()
+    boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch3", value=False)
+    mesh_toggle_switch_field.empty()
+    mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch4", value=False)
+
 def reset():
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
@@ -814,13 +822,15 @@ with col2:
 
 col1, col2, col3, col4, col5 = st.columns([2.5, 1, 0.2, 0.5, 1.8])
 with col2:
-    boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
+    boundary_toggle_switch_field = st.empty()
+    boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
-    mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
+    mesh_toggle_switch_field = st.empty()
+    mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch2", value=False)
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
-    st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
+    st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select", on_change=change_callback)
     st.button("Reset", key="reset1", on_click=reset)
 with col4:
     if st.session_state.user_face_select == "Brad Pitt":
