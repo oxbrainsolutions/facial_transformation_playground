@@ -830,6 +830,7 @@ with col4:
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
 
         from PIL import Image, ImageDraw, ImageFont, ImageOps
+        st.write(target_image_out.size)
         width, height = target_image_out.size
         new_image = Image.new("RGB", size=(width, height))
         new_image.putdata(target_image_out.getdata())
