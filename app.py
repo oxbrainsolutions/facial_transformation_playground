@@ -811,7 +811,7 @@ with col2:
   '''
   subheader_text_field2 = st.empty()
   subheader_text_field2.markdown(information_media_query + information_text1, unsafe_allow_html=True)
-st.write("hello2")
+
 col1, col2, col3, col4, col5 = st.columns([2.5, 1, 0.2, 0.5, 1.8])
 with col2:
     boundary_toggle_switch = st.toggle(label="Show Face Boundary", key="switch1", value=False)
