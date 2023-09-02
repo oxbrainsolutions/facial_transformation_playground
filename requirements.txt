@@ -5,6 +5,3 @@ opencv-python-headless
 numpy
 mediapipe
 deepface
-face_recognition
-cmake
-dlib
