@@ -7,7 +7,6 @@ import base64
 import cv2
 import av
 import mediapipe as mp
-import face_recognition
 
 from deepface import DeepFace
 from Detector import FaceDetector
