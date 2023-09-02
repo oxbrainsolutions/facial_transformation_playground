@@ -831,7 +831,7 @@ with col4:
 
         from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-        image = Image.open("images/brad_pitt.png")
+        image = cv2.imread("images/brad_pitt.png")
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         new_image = Image.new(image.mode, size=(image.size[0], image.size[1]))
         new_image.putdata(image.getdata())
