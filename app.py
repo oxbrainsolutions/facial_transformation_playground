@@ -834,7 +834,7 @@ with col4:
         image = Image.open("images/brad_pitt.png")
         new_image = Image.new(image.mode, size=(image.size[0], image.size[1]))
         new_image.putdata(image.getdata())
-        new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255)
+        new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255))
       
         cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
         st.image(new_image, use_column_width="always")
