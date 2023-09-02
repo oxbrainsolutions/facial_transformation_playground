@@ -822,6 +822,12 @@ with col2:
 
 col1, col2, col3, col4, col5 = st.columns([2.5, 1, 0.2, 0.5, 1.8])
 with col2:
+    if "show_boundary" not in st.session_state:
+        st.toggle(label="Show Face Boundary", key="show_boundary", value=False)
+    else:
+        st.toggle(label="Show Face Boundary", key="show_boundary", value=st.session_state.show_boundary)
+
+    
     boundary_toggle_switch_field = st.empty()
     boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
