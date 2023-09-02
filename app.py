@@ -828,6 +828,8 @@ with col4:
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+       #         img_array = np.array(img.convert("RGB"))
+        cv2.rectangle(target_image_out, (0, 0), (target_image_out.shape[1], target_image_out.shape[0]), (250, 250, 250, 0), 3)
         st.image(target_image_out, use_column_width="always")
     if st.session_state.user_face_select == "Elvis Presley":
         target_image, target_alpha = detector.load_target_img("images/elvis.png")
