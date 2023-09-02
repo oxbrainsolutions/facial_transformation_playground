@@ -832,10 +832,12 @@ with col4:
         from PIL import Image, ImageDraw, ImageFont, ImageOps
 
         image = Image.open("images/brad_pitt.png")
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         new_image = Image.new(image.mode, size=(image.size[0], image.size[1]))
         new_image.putdata(image.getdata())
         new_image = ImageOps.expand(new_image, border=50, fill=(34, 34, 34))
-        img_array = np.array(new_image.convert("BGR"))
+        img_array = np.array(new_image.convert("RGB"))
+        
         cv2.rectangle(img_array, (0, 0), (img_array.shape[1], img_array.shape[0]), (252, 188, 36, 0), 30)
       
       #  cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
