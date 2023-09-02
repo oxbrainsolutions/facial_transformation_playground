@@ -827,21 +827,9 @@ with col4:
         target_image, target_alpha = detector.load_target_img("images/brad_pitt.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
-        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
-
-        from PIL import Image, ImageDraw, ImageFont, ImageOps
-
-        image = cv2.imread("images/brad_pitt.png")
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        new_image = Image.new(image.mode, size=(image.size[0], image.size[1]))
-        new_image.putdata(image.getdata())
-        new_image = ImageOps.expand(new_image, border=50, fill=(34, 34, 34))
-        img_array = np.array(new_image.convert("RGB"))
-        
-        cv2.rectangle(img_array, (0, 0), (img_array.shape[1], img_array.shape[0]), (252, 188, 36, 0), 30)
-      
-      #  cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
-        st.image(img_array, use_column_width="always")
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)     
+        cv2.rectangle(target_image_out, (0, 0), (target_image_out.shape[1], target_image_out.shape[0]), (252, 188, 36, 0), 30)
+        st.image(target_image_out, use_column_width="always")
     if st.session_state.user_face_select == "Elvis Presley":
         target_image, target_alpha = detector.load_target_img("images/elvis.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
