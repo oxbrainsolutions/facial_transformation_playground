@@ -830,12 +830,12 @@ with col4:
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
 
         from PIL import Image, ImageDraw, ImageFont, ImageOps
-        st.write(target_image_out.size)
-        width, height = target_image_out.size
-        new_image = Image.new("RGB", size=(width, height))
-        new_image.putdata(target_image_out.getdata())
-        new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255))
-        
+
+        image = Image.open("images/brad_pitt.png")
+        new_image = Image.new(image.mode, size=(image.size[0], image.size[1]))
+        new_image.putdata(image.getdata())
+        new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255)
+      
         cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
         st.image(new_image, use_column_width="always")
     if st.session_state.user_face_select == "Elvis Presley":
