@@ -836,7 +836,7 @@ with col4:
         new_image.putdata(image.getdata())
         new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255))
         img_array = np.array(new_image.convert("RGB"))
-        cv2.rectangle(img_array, (0, 0), (img_array.shape[1], img_array.shape[0]), (250, 250, 250, 0), 3)
+        cv2.rectangle(img_array, (0, 0), (img_array.shape[1], img_array.shape[0]), (252, 188, 36, 0), 30)
       
       #  cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
         st.image(img_array, use_column_width="always")
