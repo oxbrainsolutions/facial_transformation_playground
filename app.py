@@ -26,7 +26,7 @@ if "show_boundary" not in st.session_state:
     st.session_state.show_boundary = False
 
 def reset():
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Terminator", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
 
@@ -819,7 +819,7 @@ with col2:
     mesh_toggle_switch = st.toggle(label="Show Face Mesh", key="switch2", value=False)
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Terminator", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
     st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select")
     st.button("Reset", key="reset1", on_click=reset)
 with col4:
@@ -831,6 +831,12 @@ with col4:
         st.image(target_image_out, use_column_width="always")
     if st.session_state.user_face_select == "Elvis Presley":
         target_image, target_alpha = detector.load_target_img("images/elvis.png")
+        target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+        target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+        st.image(target_image_out, use_column_width="always")
+    if st.session_state.user_face_select == "Joker":
+        target_image, target_alpha = detector.load_target_img("images/joker.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
