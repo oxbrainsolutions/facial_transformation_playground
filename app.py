@@ -828,8 +828,14 @@ with col4:
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
-        cv2.rectangle(target_image_out, (-5, -5), (target_image_out.shape[1] +5, target_image_out.shape[0] +5), (252, 188, 36, 0), 30)
-        st.image(target_image_out, use_column_width="always")
+
+        from PIL import Image, ImageDraw, ImageFont, ImageOps
+        new_image = Image.new(target_image_out.mode, size=(target_image_out.size[0], target_image_out.size[1]))
+        new_image.putdata(target_image_out.getdata())
+        new_image = ImageOps.expand(new_image, border=100, fill=(255, 255, 255))
+        
+        cv2.rectangle(new_image, (0, 0), (new_image.shape[1], new_image.shape[0]), (252, 188, 36, 0), 30)
+        st.image(new_image, use_column_width="always")
     if st.session_state.user_face_select == "Elvis Presley":
         target_image, target_alpha = detector.load_target_img("images/elvis.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
