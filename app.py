@@ -836,7 +836,7 @@ with col4:
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
         st.image(target_image_out, use_column_width="always")
     if st.session_state.user_face_select == "Terminator":
-        target_image, target_alpha = detector.load_target_img("images/terminator.png")
+        target_image, target_alpha = detector.load_target_img("images/joker.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
