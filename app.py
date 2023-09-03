@@ -962,6 +962,7 @@ with col2:
     if st.session_state.show_boundary == False and st.session_state.show_mesh == False and st.session_state.user_face_select != "": 
         
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
+            mp_face_detection = mp.solutions.face_detection
             image = frame.to_ndarray(format="bgr24")
 
             with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
