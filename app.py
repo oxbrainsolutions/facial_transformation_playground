@@ -20,7 +20,7 @@ st.set_page_config(page_title="Facial Transformation Playground", page_icon="ima
 st.elements.utils._shown_default_value_warning=True
 
 def change_callback1():
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk, "Joker", "Terminator", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk", "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
 def change_callback2():
@@ -37,7 +37,7 @@ def reset():
     if "show_boundary" in st.session_state:
         del st.session_state.show_boundary
     
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk, "Joker", "Terminator", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk", "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
 
