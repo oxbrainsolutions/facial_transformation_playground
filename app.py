@@ -962,13 +962,16 @@ with col2:
     if st.session_state.show_boundary == False and st.session_state.show_mesh == False and st.session_state.user_face_select != "": 
         
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
-            image = frame.to_ndarray(format="bgr24")
-            image.flags.writeable = False
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            landmarks, image, face_landmarks = detector.find_face_landmarks(image)
-            image.flags.writeable = True
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             while True:
+                image = frame.to_ndarray(format="bgr24")
+                image.flags.writeable = False
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                landmarks, image, face_landmarks = detector.find_face_landmarks(image)
+                if len(landmarks) == 0:
+                    continue
+                image.flags.writeable = True
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    
                 detector.stabilizeVideoStream(image, landmarks)
                 image_out = detector.drawLandmarks(image, face_landmarks)
                 output = maskGenerator.applyTargetMask(image, landmarks)
