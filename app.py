@@ -19,21 +19,20 @@ st.set_page_config(page_title="Facial Transformation Playground", page_icon="ima
 
 st.elements.utils._shown_default_value_warning=True
 
-if "show_mesh" not in st.session_state:
-    st.session_state.show_mesh = False
-
-if "show_boundary" not in st.session_state:
-    st.session_state.show_boundary = False
-
 def change_callback():
-    st.session_state.show_mesh = False
-    st.session_state.show_boundary = False
-    boundary_toggle_switch_field.empty()
-  #  boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch3", value=False)
-    mesh_toggle_switch_field.empty()
-  #  mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch4", value=False)
+    if "show_mesh" in st.session_state:
+        del st.session_state.show_mesh
+    
+    if "show_boundary" in st.session_state:
+        del st.session_state.show_boundary
 
 def reset():
+    if "show_mesh" in st.session_state:
+        del st.session_state.show_mesh
+    
+    if "show_boundary" in st.session_state:
+        del st.session_state.show_boundary
+    
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
@@ -826,13 +825,16 @@ with col2:
         st.toggle(label="Show Face Boundary", key="show_boundary", value=False)
     else:
         st.toggle(label="Show Face Boundary", key="show_boundary", value=st.session_state.show_boundary)
-
+    if "show_mesh" not in st.session_state:
+        st.toggle(label="Show Face Mesh", key="show_mesh", value=False)
+    else:
+        st.toggle(label="Show Face Mesh", key="show_mesh", value=st.session_state.show_mesh)
     
-    boundary_toggle_switch_field = st.empty()
-    boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch1", value=False)
+  #  boundary_toggle_switch_field = st.empty()
+  #  boundary_toggle_switch = boundary_toggle_switch_field.toggle(label="Show Face Boundary", key="switch1", value=False)
     #toggle_switch = st_toggle_switch(label="Show Face Mesh", key="switch", default_value=False, label_after=True, inactive_color="#FAFAFA", active_color="#FCBC24", track_color="#3C3F41")
-    mesh_toggle_switch_field = st.empty()
-    mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch2", value=False)
+  #  mesh_toggle_switch_field = st.empty()
+  #  mesh_toggle_switch = mesh_toggle_switch_field.toggle(label="Show Face Mesh", key="switch2", value=False)
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
     facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
