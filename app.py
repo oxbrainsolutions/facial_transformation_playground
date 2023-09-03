@@ -877,15 +877,15 @@ with col4:
         cv2.rectangle(target_image_out, (0, 0), (target_image_out.shape[1], target_image_out.shape[0]), (252, 188, 36, 0), 30)
         st.image(target_image_out, use_column_width=True)
     
-if boundary_toggle_switch:
-    st.session_state.show_boundary = True
-else:
-    st.session_state.show_boundary = False
+#if boundary_toggle_switch:
+#    st.session_state.show_boundary = True
+#else:
+#    st.session_state.show_boundary = False
 
-    if mesh_toggle_switch:
-        st.session_state.show_mesh = True
-    else:
-        st.session_state.show_mesh = False
+#    if mesh_toggle_switch:
+#        st.session_state.show_mesh = True
+#    else:
+#        st.session_state.show_mesh = False
 
 col1, col2, col3 = st.columns([2, 4, 2])
 with col2:
