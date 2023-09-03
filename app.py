@@ -837,7 +837,7 @@ with col2:
     st.button("Reset", key="reset1", on_click=reset)
 with col4:
     if st.session_state.user_face_select == "Brad Pitt":
-        target_image, target_alpha = detector.load_target_img("images/brad_pitt.png")
+        target_image, target_alpha = detector.load_target_img("images/hulk.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)     
