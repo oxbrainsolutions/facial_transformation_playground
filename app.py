@@ -973,8 +973,8 @@ with col2:
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 if results_detection.detections:
                     landmarks, image, face_landmarks = detector.find_face_landmarks(image)
-                    image.flags.writeable = True
-                    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    #                image.flags.writeable = True
+    #                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                     detector.stabilizeVideoStream(image, landmarks)
                     image_out = detector.drawLandmarks(image, face_landmarks)
                     output = maskGenerator.applyTargetMask(image, landmarks)
