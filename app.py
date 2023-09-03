@@ -963,20 +963,24 @@ with col2:
         
         def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
             image = frame.to_ndarray(format="bgr24")
-            image.flags.writeable = False
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            landmarks, image, face_landmarks = detector.find_face_landmarks(image)
-            image.flags.writeable = True
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-            if len(landmarks) == 0:
-                return av.VideoFrame.from_ndarray(image, format="bgr24")
-            else:
-                detector.stabilizeVideoStream(image, landmarks)
-                image_out = detector.drawLandmarks(image, face_landmarks)
-                output = maskGenerator.applyTargetMask(image, landmarks)
-    #           output = maskGenerator.applyTargetMaskToTarget(landmarks)
+
+            with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
+                image.flags.writeable = False
+                image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                results_detection = face_detection.process(image)
+                image.flags.writeable = True
+                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                if results_detection.detections:
+                    landmarks, image, face_landmarks = detector.find_face_landmarks(image)
+                    image.flags.writeable = True
+                    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                    detector.stabilizeVideoStream(image, landmarks)
+                    image_out = detector.drawLandmarks(image, face_landmarks)
+                    output = maskGenerator.applyTargetMask(image, landmarks)
+        #           output = maskGenerator.applyTargetMaskToTarget(landmarks)
+                    image = output
                 return av.VideoFrame.from_ndarray(output, format="bgr24")
-    
+        
         webrtc_ctx = webrtc_streamer(key="facial-recognition", mode=WebRtcMode.SENDRECV, rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}, video_frame_callback=video_frame_callback, media_stream_constraints={"video": True, "audio": False}, async_processing=True,)
 
 
