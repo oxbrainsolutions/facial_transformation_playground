@@ -19,7 +19,11 @@ st.set_page_config(page_title="Facial Transformation Playground", page_icon="ima
 
 st.elements.utils._shown_default_value_warning=True
 
-def change_callback():
+def change_callback1():
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk, "Joker", "Terminator", "Tom Cruise"]
+    st.session_state.user_face_select = facial_options[0]
+
+def change_callback2():
     if "show_mesh" in st.session_state:
         del st.session_state.show_mesh
     
@@ -33,7 +37,7 @@ def reset():
     if "show_boundary" in st.session_state:
         del st.session_state.show_boundary
     
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk, "Joker", "Terminator", "Tom Cruise"]
     st.session_state.user_face_select = facial_options[0]
 
 
@@ -822,22 +826,22 @@ with col2:
 col1, col2, col3, col4, col5 = st.columns([2.5, 1, 0.2, 0.5, 1.8])
 with col2:
     if "show_boundary" not in st.session_state:
-        st.toggle(label="Show Face Boundary", key="show_boundary", value=False)
+        st.toggle(label="Show Face Boundary", key="show_boundary", value=False, on_change=change_callback1)
     else:
-        st.toggle(label="Show Face Boundary", key="show_boundary", value=st.session_state.show_boundary)
+        st.toggle(label="Show Face Boundary", key="show_boundary", value=st.session_state.show_boundary, on_change=change_callback1)
     if "show_mesh" not in st.session_state:
-        st.toggle(label="Show Face Mesh", key="show_mesh", value=False)
+        st.toggle(label="Show Face Mesh", key="show_mesh", value=False, on_change=change_callback1)
     else:
-        st.toggle(label="Show Face Mesh", key="show_mesh", value=st.session_state.show_mesh)
+        st.toggle(label="Show Face Mesh", key="show_mesh", value=st.session_state.show_mesh, on_change=change_callback1)
 
     text = '<p class="text" style="margin-top: 0em; margin-bottom: 0em;"><span style="font-family:sans-serif; color:#FAFAFA; font-size: 0.9em; ">Face Transformation</span></p>'
     st.markdown(text_media_query1 + text, unsafe_allow_html=True)
-    facial_options = ["", "Brad Pitt", "Elvis Presley", "Joker", "Terminator", "Tom Cruise"]
-    st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select", on_change=change_callback)
+    facial_options = ["", "Brad Pitt", "Elvis Presley", "Hulk", "Joker", "Terminator", "Tom Cruise"]
+    st.selectbox(label="", label_visibility="collapsed", options=facial_options, format_func=lambda x: "Select Face" if x == "" else x, key="user_face_select", on_change=change_callback2)
     st.button("Reset", key="reset1", on_click=reset)
 with col4:
     if st.session_state.user_face_select == "Brad Pitt":
-        target_image, target_alpha = detector.load_target_img("images/hulk.png")
+        target_image, target_alpha = detector.load_target_img("images/brad_pitt.png")
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)     
@@ -848,6 +852,13 @@ with col4:
         target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
         target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
         maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)
+        cv2.rectangle(target_image_out, (0, 0), (target_image_out.shape[1], target_image_out.shape[0]), (252, 188, 36, 0), 30)
+        st.image(target_image_out, use_column_width=True)
+    if st.session_state.user_face_select == "Hulk":
+        target_image, target_alpha = detector.load_target_img("images/hulk.png")
+        target_landmarks, _, target_face_landmarks= detector.find_face_landmarks(target_image)
+        target_image_out = detector.drawLandmarks(target_image, target_face_landmarks)
+        maskGenerator.calculateTargetInfo(target_image, target_alpha, target_landmarks)     
         cv2.rectangle(target_image_out, (0, 0), (target_image_out.shape[1], target_image_out.shape[0]), (252, 188, 36, 0), 30)
         st.image(target_image_out, use_column_width=True)
     if st.session_state.user_face_select == "Joker":
